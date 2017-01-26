@@ -6,6 +6,9 @@
   "repository": "git@github.com:farism/daoc-discord-bot.git",
   "author": "Faris Mustafa <farismmk@gmail.com>",
   "license": "MIT",
+  "engines": {
+    "node": "7.2"
+  },
   "scripts": {
     "build": "babel src --out-dir build",
     "dev": "nodemon --exec node -r babel-register -- src/index.js",
@@ -14,7 +17,6 @@
   "dependencies": {
     "discord.js": "^11.0.0",
     "dotenv": "^4.0.0",
-    "nodemon": "^1.11.0",
     "numeral": "^2.0.4",
     "pm2": "^2.3.0",
     "ramda": "^0.23.0",
@@ -25,6 +27,7 @@
     "babel-cli": "^6.22.2",
     "babel-preset-latest": "^6.22.0",
     "babel-preset-stage-0": "^6.22.0",
-    "babel-register": "^6.22.0"
+    "babel-register": "^6.22.0",
+    "nodemon": "^1.11.0"
   }
 }
