@@ -15,13 +15,13 @@
     "start": "node build/index.js"
   },
   "dependencies": {
+    "bluebird": "^3.4.7",
     "discord.js": "^11.0.0",
     "dotenv": "^4.0.0",
     "numeral": "^2.0.4",
     "pm2": "^2.3.0",
-    "ramda": "^0.23.0",
     "request": "^2.79.0",
-    "request-promise-native": "^1.0.3"
+    "request-promise": "^4.1.1"
   },
   "devDependencies": {
     "babel-cli": "^6.22.2",

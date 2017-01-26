@@ -1,13 +1,14 @@
-import request from 'request-promise-native'
+import Promise from 'bluebird'
+import request from 'request-promise'
 import Discord from 'discord.js'
-import R from 'ramda'
 import dotenv from 'dotenv'
 import numeral from 'numeral'
 
 dotenv.config()
 
 const { BOT_TOKEN } = process.env
-const HERALD_API_URL = 'http://api.camelotherald.com/character/search'
+const HERALD_SEARCH_API_URL = 'http://api.camelotherald.com/character/search'
+const HERALD_INFO_API_URL = 'http://api.camelotherald.com/character/info'
 const EXCIDIO_API_URL = 'http://heraldapi.excidio.net/character/info'
 const RANKS = [
   1, 1, 25, 125, 350, 750, 1375, 2275, 3500, 5100,
@@ -26,12 +27,12 @@ const RANKS = [
   187917143
 ]
 
-const searchByNameAndCluster = R.curry((name, cluster) => {
+const searchByNameAndCluster = (name, cluster) => {
   console.log(`Searching camelot herald for '${name}' on '${cluster}'`)
 
   return new Promise((resolve, reject) => {
     request({
-      uri: `${HERALD_API_URL}`,
+      uri: `${HERALD_SEARCH_API_URL}`,
       json: true,
       qs: {
         name,
@@ -51,7 +52,7 @@ const searchByNameAndCluster = R.curry((name, cluster) => {
       console.log(err)
     })
   })
-})
+}
 
 const getMatchingCharacterId = (name, results) => {
   console.log(`Search for matching character with name '${name}'`)
@@ -63,7 +64,29 @@ const getMatchingCharacterId = (name, results) => {
   })
 }
 
-const fetchCharacterFromExcidio = (id) => {
+const fetchCharacterFromHerald = (id) => {
+  console.log(`Fetch character stats from herald for id '${id}'`)
+
+  return new Promise((resolve, reject) => {
+    request({
+      uri: `${HERALD_INFO_API_URL}/${id}`,
+      json: true,
+    })
+    .then(response => {
+      console.log('Fetched character from camelot herald successfully')
+
+      resolve({
+        ...response.realm_war_stats.current.player_kills.total,
+        realm_points: response.realm_war_stats.current.realm_points,
+      })
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  })
+}
+
+const fetchCharacterFromExcidio = (id, heraldStats) => {
   console.log(`Fetch character stats from excidio for id '${id}'`)
 
   return new Promise((resolve, reject) => {
@@ -104,33 +127,92 @@ const formatNumber = (value) => numeral(value).format('0,0')
 
 const formatIRS = (value) => numeral(value).format('0,0.00')
 
-const reply = ({ live, week }) => `
-\`
----------
+const reply = (heraldStats, excidioStats) => {
+  const { realm_points } = heraldStats
+  const { live, week } = excidioStats
+
+  return `
+\`\`\`
+-------------------------
 CHARACTER
----------
-Name         ${week.name || live.name}
-Class        ${week.class_name || live.class_name}
-Race         ${week.race_name || live.race_name}
-Rank         ${displayRank(live.realm_points)} - ${formatNumber(live.realm_points)}
----------
+-------------------------
+Name         ${live.name || ''}
+Class        ${live.class_name || ''}
+Race         ${live.race_name || ''}
+Rank         ${displayRank(realm_points)} - ${formatNumber(realm_points)}
+Next Rank    ${formatNumber(nextRank(realm_points))}
+
+-------------------------
 ALL TIME
----------
-Kills        ${formatNumber(live.player_kills_total_kills)}
-Deathblows   ${formatNumber(live.player_kills_total_death_blows)}
-Solo Kills   ${formatNumber(live.player_kills_total_solo_kills)}
-Deaths       ${formatNumber(live.player_kills_total_deaths)}
-IRS          ${formatIRS(live.realm_points / live.player_kills_total_deaths)}
----------
+-------------------------
+${printAll(heraldStats)}
+
+-------------------------
 LAST WEEK
----------
-Kills        ${formatNumber(week.player_kills_total_kills || 0)}
-Deathblows   ${formatNumber(week.player_kills_total_death_blows || 0)}
-Solo Kills   ${formatNumber(week.player_kills_total_solo_kills || 0)}
-Deaths       ${formatNumber(week.player_kills_total_deaths || 0)}
-IRS          ${formatIRS(week.realm_points / week.player_kills_total_deaths)}
-\`
+-------------------------
+${printLastWeek(week)}
+
+-------------------------
+THIS WEEK
+-------------------------
+${printThisWeek(heraldStats, live)}
+\`\`\`
 `
+}
+
+const hasStats = (stats) => {
+  return stats.kills
+    || stats.death_blows
+    || stats.solo_kills
+    || stats.deaths
+}
+
+const printStats = (stats) => {
+  return(
+`RP           ${formatNumber(stats.realm_points)}
+Kills        ${formatNumber(stats.kills)}
+Deathblows   ${formatNumber(stats.death_blows)}
+Solo Kills   ${formatNumber(stats.solo_kills)}
+Deaths       ${formatNumber(stats.deaths)}
+IRS          ${formatIRS(stats.realm_points / (stats.deaths || 1))}`)
+}
+
+const printAll = (herald) => {
+  return printStats(herald)
+}
+
+const printLastWeek = (excidio) => {
+  const stats = {
+    realm_points: excidio.realm_points,
+    kills: excidio.player_kills_total_kills,
+    death_blows: excidio.player_kills_total_deaths,
+    solo_kills: excidio.player_kills_total_solo_kills,
+    deaths: excidio.player_kills_total_deaths,
+  }
+
+  if(hasStats(stats)) {
+    return printStats(stats)
+  } else {
+    return 'No recent stats'
+  }
+}
+
+const printThisWeek = (herald, excidio) => {
+  console.log(herald, excidio)
+  const stats = {
+    realm_points: herald.realm_points - excidio.realm_points,
+    kills: herald.kills - excidio.player_kills_total_kills,
+    death_blows: herald.death_blows - excidio.player_kills_total_death_blows,
+    solo_kills: herald.solo_kills - excidio.player_kills_total_solo_kills,
+    deaths: herald.deaths - excidio.player_kills_total_deaths,
+  }
+
+  if(hasStats(stats)) {
+    return printStats(stats)
+  } else {
+    return 'No recent stats'
+  }
+}
 
 const bot = new Discord.Client()
 
@@ -139,27 +221,32 @@ bot.on('ready', () => {
 })
 
 bot.on('message', message => {
-  const [command, name, cluster = 'Ywain'] = message.content.split(' ')
-
-  if (command === '!stats') {
+  const [command = '', name = '', cluster = 'Ywain'] = message.content.split(' ')
+  if (command.toLowerCase() === '!stats') {
     searchByNameAndCluster(name, cluster)
-      .then(results => {
+      .then((results) => {
         return getMatchingCharacterId(name, results)
       })
-      .then(id => {
-        return fetchCharacterFromExcidio(id)
+      .then((id) => {
+        return Promise.all([
+          fetchCharacterFromHerald(id),
+          fetchCharacterFromExcidio(id),
+        ])
       })
-      .then(character => {
+      .spread((herald, excidio) => {
         try {
-          message.channel.sendMessage(reply(character))
-        } catch (e) {
-          console.log(e)
+          message.channel.sendMessage(reply(herald, excidio))
+        } catch(e) {
+          console.error(e)
         }
       })
-      .catch(err => {
-        message.channel.sendMessage(err)
+      .catch((err) => {
+        try {
+          message.channel.sendMessage(err)
+        } catch(e) {
+          console.error(e)
+        }
       })
-
   }
 })
 
