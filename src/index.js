@@ -198,7 +198,6 @@ const printLastWeek = (excidio) => {
 }
 
 const printThisWeek = (herald, excidio) => {
-  console.log(herald, excidio)
   const stats = {
     realm_points: herald.realm_points - excidio.realm_points,
     kills: herald.kills - excidio.player_kills_total_kills,
