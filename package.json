@@ -1,0 +1,30 @@
+{
+  "name": "daoc-discord-bot",
+  "version": "1.0.0",
+  "description": "a discord bot for viewing daoc player stats",
+  "main": "index.js",
+  "repository": "git@github.com:farism/daoc-discord-bot.git",
+  "author": "Faris Mustafa <farismmk@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "babel src --out-dir build",
+    "dev": "nodemon --exec node -r babel-register -- src/index.js",
+    "start": "node build/index.js"
+  },
+  "dependencies": {
+    "discord.js": "^11.0.0",
+    "dotenv": "^4.0.0",
+    "nodemon": "^1.11.0",
+    "numeral": "^2.0.4",
+    "pm2": "^2.3.0",
+    "ramda": "^0.23.0",
+    "request": "^2.79.0",
+    "request-promise-native": "^1.0.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.22.2",
+    "babel-preset-latest": "^6.22.0",
+    "babel-preset-stage-0": "^6.22.0",
+    "babel-register": "^6.22.0"
+  }
+}
