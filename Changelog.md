@@ -1,3 +1,7 @@
+v1.2.0
+- add level to class output
+- combine class/level/race on one line
+
 v1.1.0
 - fixed infinity IRS bug
 - case insensitive command handling

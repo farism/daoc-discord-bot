@@ -140,7 +140,7 @@ var reply = function reply(heraldStats, excidioStats) {
       week = excidioStats.week;
 
 
-  return '\n```\n-------------------------\nCHARACTER\n-------------------------\nName         ' + (live.name || '') + '\nClass        ' + (live.class_name || '') + '\nRace         ' + (live.race_name || '') + '\nRank         ' + displayRank(realm_points) + ' - ' + formatNumber(realm_points) + '\nNext Rank    ' + formatNumber(nextRank(realm_points)) + '\n\n-------------------------\nALL TIME\n-------------------------\n' + printAll(heraldStats) + '\n\n-------------------------\nLAST WEEK\n-------------------------\n' + printLastWeek(week) + '\n\n-------------------------\nTHIS WEEK\n-------------------------\n' + printThisWeek(heraldStats, live) + '\n```\n';
+  return '\n```\n-------------------------\nCHARACTER\n-------------------------\nName         ' + (live.name || '') + '\nClass        ' + (live.level || '') + ' ' + (live.race_name || '') + ' ' + (live.class_name || '') + '\nRank         ' + displayRank(realm_points) + ' - ' + formatNumber(realm_points) + '\nNext Rank    ' + formatNumber(nextRank(realm_points)) + '\n\n-------------------------\nALL TIME\n-------------------------\n' + printAll(heraldStats) + '\n\n-------------------------\nLAST WEEK\n-------------------------\n' + printLastWeek(week) + '\n\n-------------------------\nTHIS WEEK\n-------------------------\n' + printThisWeek(heraldStats, live) + '\n```\n';
 };
 
 var hasStats = function hasStats(stats) {

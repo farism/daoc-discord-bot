@@ -137,8 +137,7 @@ const reply = (heraldStats, excidioStats) => {
 CHARACTER
 -------------------------
 Name         ${live.name || ''}
-Class        ${live.class_name || ''}
-Race         ${live.race_name || ''}
+Class        ${live.level || ''} ${live.race_name || ''} ${live.class_name || ''}
 Rank         ${displayRank(realm_points)} - ${formatNumber(realm_points)}
 Next Rank    ${formatNumber(nextRank(realm_points))}
 
