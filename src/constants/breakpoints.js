@@ -17,7 +17,7 @@ const BREAKPOINTS_50 = `
 ╚═════════════════════════════════════════════════════════════════╝
 `
 export default {
-  '39': BREAKPOINTS_39,
-  '49': BREAKPOINTS_49,
+  // '39': BREAKPOINTS_39,
+  // '49': BREAKPOINTS_49,
   '50': BREAKPOINTS_50,
 }
