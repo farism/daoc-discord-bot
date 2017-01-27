@@ -20,7 +20,6 @@
     "dotenv": "^4.0.0",
     "levenshtein": "^1.0.5",
     "numeral": "^2.0.4",
-    "pm2": "^2.3.0",
     "request": "^2.79.0",
     "request-promise": "^4.1.1"
   },
