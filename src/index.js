@@ -1,7 +1,7 @@
 import Discord from 'discord.js'
 import dotenv from 'dotenv'
 
-import { help, rank, spellcraft, stats, title } from './commands'
+import { breakpoints, help, rank, spellcraft, stats, title } from './commands'
 
 dotenv.config()
 
@@ -23,6 +23,7 @@ bot.on('message', (msg) => {
   const commandStr = msgArr[0].toLowerCase()
 
   const command = {
+    '!breakpoints': breakpoints,
     '!help': help,
     '!rank': rank,
     '!stat': stats,

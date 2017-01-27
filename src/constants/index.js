@@ -1,3 +1,4 @@
+export BREAKPOINTS from './breakpoints'
 export HELP from './help'
 export RANK_TITLES from './rankTitles'
 export RANK_VALUES from './rankValues'
