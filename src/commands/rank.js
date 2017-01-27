@@ -23,7 +23,7 @@ export default (message) => {
   })
 
   return new Promise((resolve, reject) => {
-    if (rank && level && closest <= 5) {
+    if (rank && level && closest <= 3) {
       const rankValueIndex = (level * 10) || 1
       const requiredRPs = numeral(RANK_VALUES[rankValueIndex]).format('0,0')
 
