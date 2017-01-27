@@ -1,3 +1,14 @@
+const BREAKPOINTS = `
+!breakpoints <level>
+
+where default level is 50
+
+examples:
+
+  !breakpoints
+  !breakpoints 39
+`
+
 const RANK = `
 !rank <rank name>
 
@@ -12,7 +23,7 @@ examples:
 const STAT = `
 !stat <player name> [<server name>]
 
-where default servername is Ywain
+where default server name is Ywain
 
 examples:
 
@@ -36,6 +47,7 @@ examples:
 `
 
 export default {
+  '!breakpoints': BREAKPOINTS,
   '!rank': RANK,
   '!stat': STAT,
   '!stats': STATS,

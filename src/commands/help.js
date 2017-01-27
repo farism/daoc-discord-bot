@@ -1,5 +1,7 @@
 import { HELP } from '../constants'
 
+const SEPARATOR = '\n----------------------------------------------\n'
+
 const reply = (message) => `
 \`\`\`
 ${message}
@@ -13,7 +15,7 @@ export default (message) => {
     if (target) {
       resolve(reply(HELP[target]))
     } else {
-      resolve(reply(Object.keys(HELP).map((key) => HELP[key]).join('\n\n')))
+      resolve(reply(Object.keys(HELP).map((key) => HELP[key]).join(SEPARATOR)))
     }
   })
 }
