@@ -38,7 +38,9 @@ const getMatchingCharacterId = (name, results) => {
   console.log(`Search for matching character with name '${name}'`)
 
   return new Promise((resolve, reject) => {
-    const character = results.find(char => char.name.split(' ')[0] === name)
+    const character = results.find(char => {
+      return char.name.split(' ')[0].toLowerCase() === name.toLowerCase()
+    })
 
     resolve((character || results[0]).character_web_id)
   })
