@@ -3,6 +3,17 @@
 A DAoC bot for discord
 
 ## Commands
+`!breakpoints <level>`
+- where default level is 50
+
+_examples:_
+```
+!breakpoints
+!breakpoints 39
+```
+
+#  
+
 `!rank <rank name>`
 - uses Levenshtein algorithm for comparison
 
@@ -37,15 +48,4 @@ _examples:_
 
 ```
 !title Lone Enforcer
-```
-
-#  
-
-`!breakpoints <level>`
-- where default level is 50
-
-_examples:_
-```
-!breakpoints
-!breakpoints 39
 ```
