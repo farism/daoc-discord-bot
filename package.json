@@ -12,7 +12,9 @@
   "scripts": {
     "build": "babel src --out-dir build",
     "dev": "nodemon --exec node -r babel-register -- src/index.js",
-    "start": "node build/index.js"
+    "start": "node build/index.js",
+    "test": "NODE_ENV=test mocha test/**/*.js --opts .mocha.opts",
+    "test:watch": "NODE_ENV=test mocha test/**/*.js --watch --opts .mocha.opts"
   },
   "dependencies": {
     "bluebird": "^3.4.7",
@@ -28,6 +30,8 @@
     "babel-preset-latest": "^6.22.0",
     "babel-preset-stage-0": "^6.22.0",
     "babel-register": "^6.22.0",
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
     "nodemon": "^1.11.0"
   }
 }
