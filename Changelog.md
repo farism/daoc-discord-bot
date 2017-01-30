@@ -1,3 +1,8 @@
+v1.4.0
+- add more commands (!breakpoints)
+- bug fix for displaying rank
+- add specs
+
 v1.3.0
 - add more commands (!help, !rank, !title)
 - update project structure
