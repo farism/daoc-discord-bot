@@ -1,0 +1,10 @@
+version: '2'
+services:
+  dev:
+    build: .
+    volumes:
+      - ./.babelrc:/app/.babelrc
+      - ./package.json:/app/package.json
+      - ./src:/app/src
+    env_file: .env
+    command: npm run dev
