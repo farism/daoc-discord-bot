@@ -1,7 +1,7 @@
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
 
-import { formatNumber } from '../src/utils'
+import { formatNumber } from '../../src/utils'
 
 describe('formatNumber', () => {
 

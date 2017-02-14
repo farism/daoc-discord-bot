@@ -1,4 +1,6 @@
 export displayRank from './displayRank'
-export nextRank from './nextRank'
 export formatIRS from './formatIRS'
 export formatNumber from './formatNumber'
+export getRank from './getRank'
+export isRank from './isRank'
+export nextRank from './nextRank'

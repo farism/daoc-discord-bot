@@ -1,7 +1,7 @@
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
 
-import { nextRank } from '../src/utils'
+import { nextRank } from '../../src/utils'
 
 describe('nextRank', () => {
 

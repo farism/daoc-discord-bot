@@ -1,8 +1,8 @@
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
 
-import { RANK_VALUES } from '../src/constants'
-import { displayRank } from '../src/utils'
+import { RANK_VALUES } from '../../src/constants'
+import { displayRank } from '../../src/utils'
 
 describe('displayRank', () => {
 

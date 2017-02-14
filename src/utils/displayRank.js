@@ -1,10 +1,7 @@
-import { RANK_VALUES } from '../constants'
+import { getRank } from './'
 
 export default (rps) => {
-	const baseRank = Math.max(1, RANK_VALUES.findIndex((value) => value > rps) - 1)
-	const rankStr = (baseRank + 10).toString()
-	const primaryRank = rankStr.substr(0, rankStr.length - 1)
-	const secondaryRank = rankStr.substr(primaryRank.length, 1)
+	const { primary, secondary } = getRank(rps)
 
-  return `${primaryRank}L${secondaryRank}`
+  return `${primary}L${secondary}`
 }

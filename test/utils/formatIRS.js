@@ -1,7 +1,7 @@
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
 
-import { formatIRS } from '../src/utils'
+import { formatIRS } from '../../src/utils'
 
 describe('formatIRS', () => {
 
