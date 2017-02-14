@@ -1,7 +1,7 @@
 import Discord from 'discord.js'
 import dotenv from 'dotenv'
 
-import { breakpoints, help, rank, spellcraft, stats, title } from './commands'
+import { breakpoints, guild, help, rank, spellcraft, stats, title } from './commands'
 
 dotenv.config()
 
@@ -20,10 +20,12 @@ bot.on('message', (msg) => {
   }
 
   const msgArr = msg.content.split(' ')
-  const commandStr = msgArr[0].toLowerCase()
+  const commandStr = msgArr.shift().toLowerCase()
+  const paramStr = msgArr.join(' ')
 
   const command = {
     '!breakpoints': breakpoints,
+    '!guild': guild,
     '!help': help,
     '!rank': rank,
     '!stat': stats,
@@ -32,13 +34,13 @@ bot.on('message', (msg) => {
   }[commandStr]
 
   if (command) {
-    command(msg.content)
+    command(paramStr)
       .then((reply) => {
-        if (commandStr === '!help') {
-          msg.author.send(reply)
-        } else {
-          msg.channel.send(reply)
-        }
+        msg[commandStr === '!help' ? 'author' : 'channel']
+          .send(reply)
+          .catch((err) => {
+            console.log('Error sending message to Discord', err.response.body)
+          })
       })
       .catch((err) => {
         msg.channel.send(err)

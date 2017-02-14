@@ -1,4 +1,5 @@
 export breakpoints from './breakpoints'
+export guild from './guild'
 export help from './help'
 export rank from './rank'
 export stats from './stats'

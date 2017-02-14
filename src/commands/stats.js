@@ -30,6 +30,7 @@ const searchByNameAndCluster = (name, cluster) => {
     })
     .catch(err => {
       console.log(err)
+      reject('Could not fetch character list from herald')
     })
   })
 }
@@ -64,6 +65,7 @@ const fetchCharacterFromHerald = (id) => {
     })
     .catch(err => {
       console.log(err)
+      reject('Could not fetch guild from herald')
     })
   })
 }
@@ -83,6 +85,7 @@ const fetchCharacterFromExcidio = (id, heraldStats) => {
     })
     .catch(err => {
       console.log(err)
+      reject('Could not fetch character from excidio')
     })
   })
 }
@@ -172,8 +175,8 @@ const printThisWeek = (herald, excidio) => {
   }
 }
 
-export default (message) => {
-  const [command = '', name = '', cluster = 'Ywain'] = message.split(' ')
+export default (params) => {
+  const [name = '', cluster = 'Ywain'] = params.split(' ')
 
   return new Promise((resolve, reject) => {
     searchByNameAndCluster(name, cluster)
@@ -187,18 +190,10 @@ export default (message) => {
         ])
       })
       .spread((herald, excidio) => {
-        try {
-          resolve(reply(herald, excidio))
-        } catch(e) {
-          console.error(e)
-        }
+        resolve(reply(herald, excidio))
       })
       .catch((err) => {
-        try {
-          reject(err)
-        } catch(e) {
-          console.error(e)
-        }
+        reject(err)
       })
   })
 }

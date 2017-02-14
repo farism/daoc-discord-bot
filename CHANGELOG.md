@@ -1,3 +1,6 @@
+v1.6.0
+- add more commands (!guild)
+
 v1.5.0
 - update !rank command with support for rank format e.g. 10L5
 - add specs

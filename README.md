@@ -14,6 +14,15 @@ _examples:_
 
 #  
 
+`!guild <guild name>`
+
+_examples:_
+```
+!guild Dark Knights of Camelot
+```
+
+#
+
 `!rank <rank level> | <rank name>`
 - uses Levenshtein algorithm for comparison
 

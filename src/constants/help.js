@@ -9,6 +9,14 @@ examples:
   !breakpoints 39
 `
 
+const GUILD = `
+!guild <guild name>
+
+examples:
+
+  !guild Dark Knights of Camelot
+`
+
 const RANK = `
 !rank <rank level> | <rank name>
 
@@ -50,6 +58,7 @@ examples:
 
 export default {
   '!breakpoints': BREAKPOINTS,
+  '!guild': GUILD,
   '!rank': RANK,
   '!stat': STAT,
   '!stats': STATS,
