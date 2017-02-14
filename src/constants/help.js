@@ -10,12 +10,13 @@ examples:
 `
 
 const RANK = `
-!rank <rank name>
+!rank <rank level> | <rank name>
 
 uses Levenshtein algorithm for comparison
 
 examples:
 
+  !rank 10L5
   !rank Fru
   !rank Aleroin Knihgt (spelled incorrectly)
 `
