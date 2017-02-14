@@ -16,6 +16,7 @@ uses Levenshtein algorithm for comparison
 
 examples:
 
+  !rank 5
   !rank 10L5
   !rank Fru
   !rank Aleroin Knihgt (spelled incorrectly)
