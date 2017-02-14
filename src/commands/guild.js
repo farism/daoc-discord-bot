@@ -121,8 +121,8 @@ GUILD
 -------------------------
 Name         ${heraldStats.name}
 Alliance     ${heraldStats.alliance}
-Accounts     ${heraldStats.member_accounts}
-Characters   ${heraldStats.member_characters}
+Accounts     ${formatNumber(heraldStats.member_accounts)}
+Characters   ${formatNumber(heraldStats.member_characters)}
 
 -------------------------
 ALL TIME
