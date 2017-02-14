@@ -4,7 +4,9 @@ services:
     build: .
     volumes:
       - ./.babelrc:/app/.babelrc
+      - ./.mocha.opts:/app/.mocha.opts
       - ./package.json:/app/package.json
       - ./src:/app/src
+      - ./test:/app/test
     env_file: .env
     command: npm run dev

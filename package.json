@@ -14,7 +14,7 @@
     "dev": "nodemon --exec node -r babel-register -- src/index.js",
     "start": "node build/index.js",
     "test": "NODE_ENV=test mocha test/**/*.js --opts .mocha.opts",
-    "test:watch": "NODE_ENV=test mocha test/**/*.js --watch --opts .mocha.opts"
+    "test:watch": "NODE_ENV=test mocha -r babel-register test/**/*.js --watch --opts .mocha.opts"
   },
   "dependencies": {
     "bluebird": "^3.4.7",
