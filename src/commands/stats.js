@@ -58,10 +58,7 @@ const fetchCharacterFromHerald = (id) => {
     .then(response => {
       console.log('Fetched character from camelot herald successfully')
 
-      resolve({
-        ...response.realm_war_stats.current.player_kills.total,
-        realm_points: response.realm_war_stats.current.realm_points,
-      })
+      resolve(response)
     })
     .catch(err => {
       console.log(err)
@@ -91,7 +88,8 @@ const fetchCharacterFromExcidio = (id, heraldStats) => {
 }
 
 const reply = (heraldStats, excidioStats) => {
-  const { realm_points } = heraldStats
+  const { class_name, level, name, race, realm_war_stats } = heraldStats
+  const { current: { realm_points, player_kills: { total } } } = realm_war_stats
   const { live, week } = excidioStats
 
   return `
@@ -99,15 +97,15 @@ const reply = (heraldStats, excidioStats) => {
 -------------------------
 CHARACTER
 -------------------------
-Name         ${live.name || ''}
-Class        ${live.level || ''} ${live.race_name || ''} ${live.class_name || ''}
+Name         ${name || ''}
+Class        ${level || ''} ${race || ''} ${class_name || ''}
 Rank         ${displayRank(realm_points)}
 Next Rank    ${formatNumber(nextRank(realm_points))}
 
 -------------------------
 ALL TIME
 -------------------------
-${printAll(heraldStats)}
+${printAll({ ...total, realm_points })}
 
 -------------------------
 LAST WEEK
