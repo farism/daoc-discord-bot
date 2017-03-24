@@ -1,3 +1,6 @@
+v1.7.0
+- use herald response for character info - avoids blank data for new chars that don't exist in excidio
+
 v1.6.0
 - add more commands (!guild)
 
