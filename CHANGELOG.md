@@ -1,3 +1,6 @@
+v1.8.0
+- fix bug introduced with using herald response not showing this weeks stats
+
 v1.7.0
 - use herald response for character info - avoids blank data for new chars that don't exist in excidio
 
