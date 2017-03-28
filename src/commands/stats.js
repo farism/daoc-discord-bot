@@ -115,13 +115,14 @@ ${printLastWeek(week)}
 -------------------------
 THIS WEEK
 -------------------------
-${printThisWeek(heraldStats, live)}
+${printThisWeek(realm_war_stats.current, live)}
 \`\`\`
 `
 }
 
 const hasStats = (stats) => {
-  return stats.kills
+  return stats.realm_points
+    || stats.kills
     || stats.death_blows
     || stats.solo_kills
     || stats.deaths
@@ -157,13 +158,15 @@ const printLastWeek = (excidio) => {
   }
 }
 
-const printThisWeek = (herald, excidio) => {
+const printThisWeek = (current, excidio) => {
+  const { realm_points, player_kills: { total } } = current
+
   const stats = {
-    realm_points: herald.realm_points - excidio.realm_points,
-    kills: herald.kills - excidio.player_kills_total_kills,
-    death_blows: herald.death_blows - excidio.player_kills_total_death_blows,
-    solo_kills: herald.solo_kills - excidio.player_kills_total_solo_kills,
-    deaths: herald.deaths - excidio.player_kills_total_deaths,
+    realm_points: realm_points - excidio.realm_points,
+    kills: total.kills - excidio.player_kills_total_kills,
+    death_blows: total.death_blows - excidio.player_kills_total_death_blows,
+    solo_kills: total.solo_kills - excidio.player_kills_total_solo_kills,
+    deaths: total.deaths - excidio.player_kills_total_deaths,
   }
 
   if(hasStats(stats)) {
