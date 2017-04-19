@@ -1,3 +1,6 @@
+v1.9.0
+- add 90 second timeout to auto delete !guild and !stat messages
+
 v1.8.0
 - fix bug introduced with using herald response not showing this weeks stats
 
