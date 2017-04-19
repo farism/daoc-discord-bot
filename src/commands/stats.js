@@ -6,6 +6,7 @@ import { displayRank, formatIRS, formatNumber, nextRank } from '../utils'
 const HERALD_SEARCH_API_URL = 'http://api.camelotherald.com/character/search'
 const HERALD_INFO_API_URL = 'http://api.camelotherald.com/character/info'
 const EXCIDIO_API_URL = 'http://heraldapi.excidio.net/character/info'
+const EXCIDIO_CHARACTER_URL = 'http://sc.excidio.net/herald/character'
 
 const searchByNameAndCluster = (name, cluster) => {
   console.log(`Searching camelot herald for '${name}' on '${cluster}'`)
@@ -87,7 +88,7 @@ const fetchCharacterFromExcidio = (id, heraldStats) => {
   })
 }
 
-const reply = (heraldStats, excidioStats) => {
+const createReply = (heraldStats, excidioStats) => {
   const { class_name, level, name, race, realm_war_stats } = heraldStats
   const { current: { realm_points, player_kills: { total } } } = realm_war_stats
   const { live, week } = excidioStats
@@ -188,10 +189,14 @@ export default (params) => {
         return Promise.all([
           fetchCharacterFromHerald(id),
           fetchCharacterFromExcidio(id),
+          Promise.resolve(`${EXCIDIO_CHARACTER_URL}/${id}`)
         ])
       })
-      .spread((herald, excidio) => {
-        resolve(reply(herald, excidio))
+      .spread((herald, excidio, update) => {
+        resolve({
+          reply: createReply(herald, excidio),
+          meta: { update },
+        })
       })
       .catch((err) => {
         reject(err)

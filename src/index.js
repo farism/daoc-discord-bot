@@ -7,7 +7,7 @@ dotenv.config()
 
 const { BOT_TOKEN } = process.env
 const BOT_PREFIX = '!';
-const DELETE_TIMEOUT = 90000
+const UPDATE_TIMEOUT = 90000
 
 const bot = new Discord.Client()
 
@@ -36,14 +36,14 @@ bot.on('message', (msg) => {
 
   if (command) {
     command(paramStr)
-      .then((reply) => {
+      .then(({ reply, meta = {} }) => {
         msg[commandStr === '!help' ? 'author' : 'channel']
           .send(reply)
           .then((msg) => {
-            if (['!stat', '!stats', '!guild'].indexOf(commandStr) >= 0) {
+            if (meta.update) {
               setTimeout(() => {
-                msg.delete()
-              }, DELETE_TIMEOUT)
+                msg.edit(meta.update)
+              }, UPDATE_TIMEOUT)
             }
           })
           .catch((err) => {

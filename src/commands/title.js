@@ -7,7 +7,7 @@ export default (message) => {
     const value = TITLES[title.toLowerCase()]
 
     if (value) {
-      resolve(`${value} to obtain title '${title}'`)
+      resolve({ reply: `${value} to obtain title '${title}'` })
     } else {
       reject(`Title '${title}' does not exist`)
     }

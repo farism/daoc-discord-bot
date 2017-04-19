@@ -12,9 +12,10 @@ const rankToTitle = (value) => {
     const rankValueIndex = ((primary - 1) * 10) + secondary
     const titles = RANK_TITLES[primary - 1].join(', ')
     const requiredRPs = RANK_VALUES[rankValueIndex]
+    const reply = `\`RR ${value}\` titles are \`${titles}\`, achievable at \`${formatNumber(requiredRPs)}\` rps`
 
     if (requiredRPs) {
-      resolve(`\`RR ${value}\` titles are \`${titles}\`, achievable at \`${formatNumber(requiredRPs)}\` rps`)
+      resolve({ reply })
     } else {
       reject('Could not find rank, please check spelling')
     }
@@ -43,8 +44,9 @@ const titleToRank = (value) => {
       const primary = level + 1
       const rankValueIndex = (level * 10) || 1
       const requiredRPs = formatNumber(RANK_VALUES[rankValueIndex])
+      const reply = `\`${rank}\` is \`RR ${primary}L0\`, achievable at \`${requiredRPs}\` rps`
 
-      resolve(`\`${rank}\` is \`RR ${primary}L0\`, achievable at \`${requiredRPs}\` rps`)
+      resolve({ reply })
     } else {
       reject('Could not find rank, please check spelling')
     }
