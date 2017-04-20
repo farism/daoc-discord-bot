@@ -147,7 +147,7 @@ const printLastWeek = (excidio) => {
   const stats = {
     realm_points: excidio.realm_points,
     kills: excidio.player_kills_total_kills,
-    death_blows: excidio.player_kills_total_deaths,
+    death_blows: excidio.player_kills_total_death_blows,
     solo_kills: excidio.player_kills_total_solo_kills,
     deaths: excidio.player_kills_total_deaths,
   }
