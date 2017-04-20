@@ -1,3 +1,6 @@
+v1.10.1
+- fix last week deathblow stats (was using deaths)
+
 v1.10.0
 - instead of deleting old messages, bot now edits message with a link to excidio
 
