@@ -6,7 +6,7 @@ import { displayRank, formatIRS, formatNumber, nextRank } from '../utils'
 const HERALD_SEARCH_API_URL = 'http://api.camelotherald.com/guild/search'
 const HERALD_INFO_API_URL = 'http://api.camelotherald.com/guild/info'
 const EXCIDIO_API_URL = 'http://heraldapi.excidio.net/guild/info'
-const EXCIDIO_GUILD_URL = 'http://sc.excidio.net/herald/guild'
+const EXCIDIO_GUILD_URL = 'http://excidio.net/herald/guild'
 
 const searchByName = (name, cluster) => {
   console.log(`Searching camelot herald for guild '${name}'`)

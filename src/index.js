@@ -7,7 +7,7 @@ dotenv.config()
 
 const { BOT_TOKEN } = process.env
 const BOT_PREFIX = '!';
-const UPDATE_TIMEOUT = 90000
+const UPDATE_TIMEOUT = 5000
 
 const bot = new Discord.Client()
 
@@ -40,9 +40,10 @@ bot.on('message', (msg) => {
         msg[commandStr === '!help' ? 'author' : 'channel']
           .send(reply)
           .then((msg) => {
-            if (meta.update) {
+            console.log(meta)
+            if (meta.editedMessage) {
               setTimeout(() => {
-                msg.edit(meta.update)
+                msg.edit(meta.editedMessage)
               }, UPDATE_TIMEOUT)
             }
           })

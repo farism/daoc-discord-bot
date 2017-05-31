@@ -1,3 +1,7 @@
+v1.11.0
+- update !stats command to add guild name to "character info" section
+- update excidio url
+
 v1.10.1
 - fix last week deathblow stats (was using deaths)
 
