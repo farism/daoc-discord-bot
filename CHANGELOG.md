@@ -1,3 +1,6 @@
+v1.11.1
+- bump edit message timeout back up to 90 seconds
+
 v1.11.0
 - update !stats command to add guild name to "character info" section
 - update excidio url

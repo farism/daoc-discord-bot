@@ -7,7 +7,7 @@ dotenv.config()
 
 const { BOT_TOKEN } = process.env
 const BOT_PREFIX = '!';
-const UPDATE_TIMEOUT = 5000
+const UPDATE_TIMEOUT = 90000
 
 const bot = new Discord.Client()
 
