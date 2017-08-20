@@ -1,12 +1,12 @@
-import { BREAKPOINTS } from '../constants'
+import {BREAKPOINTS} from '../constants'
 
-const createReply = (message) => `
+const createReply = message => `
 \`\`\`
 ${message}
 \`\`\`
 `
 
-export default (message) => {
+export default message => {
   const [command = '', level = '50'] = message.split(' ')
 
   return new Promise((resolve, reject) => {
@@ -14,7 +14,7 @@ export default (message) => {
     const reply = createReply(value)
 
     if (value) {
-      resolve({ reply })
+      resolve({reply})
     } else {
       reject(`Breakpoints for level '${level}' do not exist`)
     }

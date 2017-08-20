@@ -10,7 +10,21 @@ export default [
   ['Lion Knight', 'Tiarna', 'Bantiarna', 'Stormur Herra'],
   ['Dragon Knight', 'Emerald Ridere', 'Einherjar'],
   ['Lord', 'Lady', 'Barun', 'Banbharun', 'Herra', 'Fru'],
-  ['Baronet', 'Baronetess', 'Ard Tiarna', 'Ard Bantiarna', 'Hersir', 'Baronsfru'],
+  [
+    'Baronet',
+    'Baronetess',
+    'Ard Tiarna',
+    'Ard Bantiarna',
+    'Hersir',
+    'Baronsfru',
+  ],
   ['Baron', 'Baroness', 'Ciann', 'Cath', 'Vicomte', 'Vicomtessa'],
-  ['Arch Duke', 'Arch Duchess', 'Ard Diuc', 'Ard Bandiuc', 'Stor Jarl', 'Stor Hurfru'],
+  [
+    'Arch Duke',
+    'Arch Duchess',
+    'Ard Diuc',
+    'Ard Bandiuc',
+    'Stor Jarl',
+    'Stor Hurfru',
+  ],
 ]

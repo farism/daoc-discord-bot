@@ -1,12 +1,21 @@
 import Discord from 'discord.js'
 import dotenv from 'dotenv'
 
-import { breakpoints, guild, help, rank, spellcraft, stats, title } from './commands'
+import {
+  breakpoints,
+  guild,
+  help,
+  rank,
+  spellcraft,
+  stats,
+  title,
+  timezone,
+} from './commands'
 
 dotenv.config()
 
-const { BOT_TOKEN } = process.env
-const BOT_PREFIX = '!';
+const {BOT_TOKEN} = process.env
+const BOT_PREFIX = '!'
 const UPDATE_TIMEOUT = 90000
 
 const bot = new Discord.Client()
@@ -15,8 +24,8 @@ bot.on('ready', () => {
   console.log('I am ready!')
 })
 
-bot.on('message', (msg) => {
-  if(msg.author.bot || !msg.content.startsWith(BOT_PREFIX)) {
+bot.on('message', msg => {
+  if (msg.author.bot || !msg.content.startsWith(BOT_PREFIX)) {
     return
   }
 
@@ -32,14 +41,15 @@ bot.on('message', (msg) => {
     '!stat': stats,
     '!stats': stats,
     '!title': title,
+    '!tz': timezone,
   }[commandStr]
 
   if (command) {
     command(paramStr)
-      .then(({ reply, meta = {} }) => {
+      .then(({reply, meta = {}}) => {
         msg[commandStr === '!help' ? 'author' : 'channel']
           .send(reply)
-          .then((msg) => {
+          .then(msg => {
             console.log(meta)
             if (meta.editedMessage) {
               setTimeout(() => {
@@ -47,11 +57,11 @@ bot.on('message', (msg) => {
               }, UPDATE_TIMEOUT)
             }
           })
-          .catch((err) => {
+          .catch(err => {
             console.log('Error sending message to Discord', err.response.body)
           })
       })
-      .catch((err) => {
+      .catch(err => {
         msg.channel.send(err)
       })
   }

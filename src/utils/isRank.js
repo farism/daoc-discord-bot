@@ -1,1 +1,1 @@
-export default (value) => /\d+L?\d?/i.test(value)
+export default value => /\d+L?\d?/i.test(value)

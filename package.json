@@ -21,6 +21,8 @@
     "discord.js": "^11.0.0",
     "dotenv": "^4.0.0",
     "levenshtein": "^1.0.5",
+    "moment": "^2.18.1",
+    "moment-timezone": "^0.5.13",
     "numeral": "^2.0.4",
     "request": "^2.79.0",
     "request-promise": "^4.1.1"

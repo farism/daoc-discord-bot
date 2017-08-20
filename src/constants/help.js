@@ -41,11 +41,18 @@ examples:
   !stat Electronika Gaheris
 `
 
-
 const STATS = `
 !stats <player name> [<server name>]
 
 alias for !stat
+`
+
+const TIMEZONE = `
+!tz <time>
+
+examples:
+
+  !tz 6:30 PM
 `
 
 const TITLE = `
@@ -62,5 +69,6 @@ export default {
   '!rank': RANK,
   '!stat': STAT,
   '!stats': STATS,
+  '!tz': TIMEZONE,
   '!title': TITLE,
 }
