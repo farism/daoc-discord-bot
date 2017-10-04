@@ -12,7 +12,7 @@ _examples:_
 !breakpoints 39
 ```
 
-#  
+#
 
 `!guild <guild name>`
 
@@ -34,7 +34,24 @@ _examples:_
 !rank Aleroin Knihgt (spelled incorrectly)
 ```
 
-#  
+#
+
+`!resist <realm>`
+- where realm is one of "Alb", "Albion", "Hib", "Hibernia", "Mid", "Midgard". Case insensitive
+
+_examples:_
+```
+
+!resist alb
+!resist Hibernia
+```
+
+#
+
+`!resists <realm>`
+- alias for `!resist`
+
+#
 
 `!stat <player name> [<server name>]`
 - where default server name is Ywain
@@ -46,12 +63,12 @@ _examples:_
 !stat Electronika Gaheris
 ```
 
-#  
+#
 
 `!stats <player name> [<server name>]`
 - alias for `!stat`
 
-#  
+#
 
 `!title <title name>`
 

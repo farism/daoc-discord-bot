@@ -1,7 +1,7 @@
 import Promise from 'bluebird'
 import request from 'request-promise'
 
-import {displayRank, formatIRS, formatNumber, nextRank} from '../utils'
+import { displayRank, formatIRS, formatNumber, nextRank } from '../utils'
 
 const HERALD_SEARCH_API_URL = 'http://api.camelotherald.com/character/search'
 const HERALD_INFO_API_URL = 'http://api.camelotherald.com/character/info'
@@ -100,8 +100,8 @@ const createReply = (heraldStats, excidioStats) => {
     race,
     realm_war_stats,
   } = heraldStats
-  const {current: {realm_points, player_kills: {total}}} = realm_war_stats
-  const {live, week} = excidioStats
+  const { current: { realm_points, player_kills: { total } } } = realm_war_stats
+  const { live, week } = excidioStats
 
   return `
 \`\`\`
@@ -117,7 +117,7 @@ Next Rank    ${formatNumber(nextRank(realm_points))}
 -------------------------
 ALL TIME
 -------------------------
-${printAll({...total, realm_points})}
+${printAll({ ...total, realm_points })}
 
 -------------------------
 LAST WEEK
@@ -172,7 +172,7 @@ const printLastWeek = excidio => {
 }
 
 const printThisWeek = (current, excidio) => {
-  const {realm_points, player_kills: {total}} = current
+  const { realm_points, player_kills: { total } } = current
 
   const stats = {
     realm_points: realm_points - excidio.realm_points,
@@ -207,7 +207,7 @@ export default params => {
       .spread((herald, excidio, editedMessage) => {
         resolve({
           reply: createReply(herald, excidio),
-          meta: {editedMessage},
+          meta: { editedMessage },
         })
       })
       .catch(err => {

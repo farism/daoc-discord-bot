@@ -1,7 +1,7 @@
-import {describe, it} from 'mocha'
-import {expect} from 'chai'
+import { describe, it } from 'mocha'
+import { expect } from 'chai'
 
-import {timezone} from '../../src/commands'
+import { timezone } from '../../src/commands'
 
 describe('!tz', () => {
   it('converts player timezone to global timezones', () => {

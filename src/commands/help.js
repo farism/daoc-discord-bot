@@ -1,4 +1,4 @@
-import {HELP} from '../constants'
+import { HELP } from '../constants'
 
 const SEPARATOR = '\n----------------------------------------------\n'
 
@@ -14,8 +14,12 @@ export default message => {
   return new Promise((resolve, reject) => {
     const reply = target
       ? createReply(HELP[target])
-      : createReply(Object.keys(HELP).map(key => HELP[key]).join(SEPARATOR))
+      : createReply(
+          Object.keys(HELP)
+            .map(key => HELP[key])
+            .join(SEPARATOR)
+        )
 
-    resolve({reply})
+    resolve({ reply })
   })
 }

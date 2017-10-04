@@ -1,8 +1,8 @@
 import numeral from 'numeral'
 import Levenshtein from 'levenshtein'
 
-import {RANK_TITLES, RANK_VALUES} from '../constants'
-import {formatNumber, isRank} from '../utils'
+import { RANK_TITLES, RANK_VALUES } from '../constants'
+import { formatNumber, isRank } from '../utils'
 
 const rankToTitle = value => {
   return new Promise((resolve, reject) => {
@@ -17,7 +17,7 @@ const rankToTitle = value => {
     )}\` rps`
 
     if (requiredRPs) {
-      resolve({reply})
+      resolve({ reply })
     } else {
       reject('Could not find rank, please check spelling')
     }
@@ -48,7 +48,7 @@ const titleToRank = value => {
       const requiredRPs = formatNumber(RANK_VALUES[rankValueIndex])
       const reply = `\`${rank}\` is \`RR ${primary}L0\`, achievable at \`${requiredRPs}\` rps`
 
-      resolve({reply})
+      resolve({ reply })
     } else {
       reject('Could not find rank, please check spelling')
     }

@@ -1,7 +1,7 @@
 import Promise from 'bluebird'
 import request from 'request-promise'
 
-import {displayRank, formatIRS, formatNumber, nextRank} from '../utils'
+import { displayRank, formatIRS, formatNumber, nextRank } from '../utils'
 
 const HERALD_SEARCH_API_URL = 'http://api.camelotherald.com/guild/search'
 const HERALD_INFO_API_URL = 'http://api.camelotherald.com/guild/info'
@@ -122,7 +122,7 @@ IRS          ${formatIRS(
 }
 
 const createReply = (heraldStats, excidioStats) => {
-  const {live, week} = excidioStats
+  const { live, week } = excidioStats
 
   return `
 \`\`\`
@@ -166,7 +166,7 @@ export default params => {
       .spread((herald, excidio, update) => {
         resolve({
           reply: createReply(herald, excidio),
-          meta: {update},
+          meta: { update },
         })
       })
       .catch(err => {

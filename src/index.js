@@ -6,6 +6,7 @@ import {
   guild,
   help,
   rank,
+  resists,
   spellcraft,
   stats,
   title,
@@ -14,7 +15,7 @@ import {
 
 dotenv.config()
 
-const {BOT_TOKEN} = process.env
+const { BOT_TOKEN } = process.env
 const BOT_PREFIX = '!'
 const UPDATE_TIMEOUT = 90000
 
@@ -38,19 +39,20 @@ bot.on('message', msg => {
     '!guild': guild,
     '!help': help,
     '!rank': rank,
+    '!resist': resists,
+    '!resists': resists,
     '!stat': stats,
     '!stats': stats,
     '!title': title,
-    '!tz': timezone,
+    // '!tz': timezone,
   }[commandStr]
 
   if (command) {
     command(paramStr)
-      .then(({reply, meta = {}}) => {
+      .then(({ reply, meta = {} }) => {
         msg[commandStr === '!help' ? 'author' : 'channel']
           .send(reply)
           .then(msg => {
-            console.log(meta)
             if (meta.editedMessage) {
               setTimeout(() => {
                 msg.edit(meta.editedMessage)
