@@ -1,3 +1,6 @@
+v1.12.0
+- add !resists <alb|hib|mid> command
+
 v1.11.1
 - bump edit message timeout back up to 90 seconds
 
