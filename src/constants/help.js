@@ -30,6 +30,15 @@ examples:
   !rank Aleroin Knihgt (spelled incorrectly)
 `
 
+const RESISTS = `
+!resists <alb|hib|mid>
+
+examples:
+
+  !resists alb
+  !resists albion
+`
+
 const STAT = `
 !stat <player name> [<server name>]
 
@@ -47,14 +56,6 @@ const STATS = `
 alias for !stat
 `
 
-const TIMEZONE = `
-!tz <time>
-
-examples:
-
-  !tz 6:30 PM
-`
-
 const TITLE = `
 !title <title name>
 
@@ -67,8 +68,8 @@ export default {
   '!breakpoints': BREAKPOINTS,
   '!guild': GUILD,
   '!rank': RANK,
+  '!resists': RESISTS,
   '!stat': STAT,
   '!stats': STATS,
-  '!tz': TIMEZONE,
   '!title': TITLE,
 }

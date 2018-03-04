@@ -10,7 +10,6 @@ import {
   spellcraft,
   stats,
   title,
-  timezone,
 } from './commands'
 
 dotenv.config()
@@ -44,7 +43,6 @@ bot.on('message', msg => {
     '!stat': stats,
     '!stats': stats,
     '!title': title,
-    // '!tz': timezone,
   }[commandStr]
 
   if (command) {
